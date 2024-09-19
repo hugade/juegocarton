@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4617585021278144449}
   - component: {fileID: 6513682666347971431}
   m_Layer: 0
-  m_Name: pasillo
+  m_Name: gameplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,10 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5513692971586754581}
-  - {fileID: 3961093068762088488}
-  - {fileID: 8006768097620691697}
-  - {fileID: 6430025731128398803}
+  - {fileID: 945034898117189793}
   - {fileID: 2069035981949531881}
   - {fileID: 8325202627433642682}
   m_Father: {fileID: 0}
@@ -79,11 +76,11 @@ Transform:
   m_GameObject: {fileID: 990206671095795115}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.7500002, y: 2, z: 3}
+  m_LocalPosition: {x: 1.7500002, y: 0, z: 0}
   m_LocalScale: {x: 2.094077, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4617585021278144449}
+  m_Father: {fileID: 945034898117189793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!33 &5910216193075548142
 MeshFilter:
@@ -185,11 +182,11 @@ Transform:
   m_GameObject: {fileID: 1099475269466402553}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 0.4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4617585021278144449}
+  m_Father: {fileID: 945034898117189793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7229910083125087871
 MeshFilter:
@@ -291,11 +288,11 @@ Transform:
   m_GameObject: {fileID: 1788568616202794703}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -2, y: 2, z: 3}
-  m_LocalScale: {x: 1.7057047, y: 1, z: 1}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalScale: {x: 1.7057048, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4617585021278144449}
+  m_Father: {fileID: 945034898117189793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &5470000361781347429
 MeshFilter:
@@ -397,11 +394,11 @@ Transform:
   m_GameObject: {fileID: 4152753117273601059}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 4.5, z: 3}
+  m_LocalPosition: {x: 0, y: 2.5, z: 0}
   m_LocalScale: {x: 0.4, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4617585021278144449}
+  m_Father: {fileID: 945034898117189793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!33 &8111062392820938328
 MeshFilter:
@@ -475,6 +472,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &6013415849638901199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945034898117189793}
+  m_Layer: 0
+  m_Name: pasillo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &945034898117189793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6013415849638901199}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 2, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5513692971586754581}
+  - {fileID: 3961093068762088488}
+  - {fileID: 8006768097620691697}
+  - {fileID: 6430025731128398803}
+  m_Father: {fileID: 4617585021278144449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1967768321887137950
 PrefabInstance:
   m_ObjectHideFlags: 0

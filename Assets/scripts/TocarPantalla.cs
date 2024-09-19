@@ -9,8 +9,22 @@ public class TocarPantalla : MonoBehaviour
     private bool directionChanged;
 
     private Vector2 startPosition;
-        private void Update()
-        {
+
+    public float speed;
+
+    public GameObject pasillo;
+
+    public GameObject enemigo1, enemigo2;
+
+    private bool moverpasillo;
+
+    private void Start()
+    {
+        moverpasillo = false;
+    }
+
+    private void Update()
+    {
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -25,6 +39,8 @@ public class TocarPantalla : MonoBehaviour
                     case TouchPhase.Moved:
                     direction = touch.position - startPosition;
                     Debug.Log("movement");
+                    Object.Destroy(enemigo1);
+                    moverpasillo = true;
                     break;
 
                     case TouchPhase.Stationary:
@@ -36,6 +52,15 @@ public class TocarPantalla : MonoBehaviour
                     break;
                 }
             }
-        }
+
+            if (moverpasillo = true)
+            {
+                
+                speed = 1;
+
+               transform.Translate(new Vector3(0, 0, -1) * Time.deltaTime * speed, Space.World);
+            }
+            
+    }
     
 }
