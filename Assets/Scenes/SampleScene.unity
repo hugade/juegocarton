@@ -785,6 +785,27 @@ MonoBehaviour:
   pasillo: {fileID: 1286790342}
   enemigo1: {fileID: 748616196}
   enemigo2: {fileID: 1534348918}
+--- !u!95 &2069919926
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069919923}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e890dfde19df03b4197d9ab90c960d60, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4907432830095371618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 4617585021278144449, guid: 0e5804f7fbae3bc4e92ca4caf6cd1287,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4617585021278144449, guid: 0e5804f7fbae3bc4e92ca4caf6cd1287,
         type: 3}
@@ -861,6 +882,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2069919924}
+    - targetCorrespondingSourceObject: {fileID: 613830207555416311, guid: 0e5804f7fbae3bc4e92ca4caf6cd1287,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2069919926}
   m_SourcePrefab: {fileID: 100100000, guid: 0e5804f7fbae3bc4e92ca4caf6cd1287, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

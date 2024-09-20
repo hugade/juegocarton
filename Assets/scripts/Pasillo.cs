@@ -11,14 +11,14 @@ public class Pasillo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        position = transform.position.z;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        transform.Translate(new Vector3(0, 0, -1) * Time.deltaTime * speed, Space.World);
+        
       
         
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class TocarPantalla : MonoBehaviour
@@ -16,17 +17,30 @@ public class TocarPantalla : MonoBehaviour
 
     public GameObject enemigo1, enemigo2;
 
-    private bool moverpasillo;
+    private int movz;
 
+    private float limit1, limit2;
+
+    private bool batalla;
     private void Start()
     {
-        moverpasillo = false;
+        limit1 = 0;
+
+        limit2 = -10;
+
+        movz = -1;
+
+        speed = 2;
+
+        batalla = false;
     }
 
     private void Update()
     {
-            if (Input.touchCount > 0)
-            {
+        PasilloMovimiento();
+
+        if (Input.touchCount > 0)
+        {
                 Touch touch = Input.GetTouch(0);
 
                 switch (touch.phase)
@@ -39,8 +53,10 @@ public class TocarPantalla : MonoBehaviour
                     case TouchPhase.Moved:
                     direction = touch.position - startPosition;
                     Debug.Log("movement");
-                    Object.Destroy(enemigo1);
-                    moverpasillo = true;
+                    if (batalla == true)
+                    {
+                        DestroyEnemigo();
+                    }
                     break;
 
                     case TouchPhase.Stationary:
@@ -51,16 +67,41 @@ public class TocarPantalla : MonoBehaviour
                     Debug.Log("ended");
                     break;
                 }
-            }
+        }
 
-            if (moverpasillo = true)
-            {
-                
-                speed = 1;
-
-               transform.Translate(new Vector3(0, 0, -1) * Time.deltaTime * speed, Space.World);
-            }
+       
             
+    }
+
+    private void PasilloMovimiento()
+    {
+        transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
+
+        if (transform.position.z <= limit1)
+        {
+            Batalla();
+        }
+
+       
+    }
+
+    private void DestroyEnemigo()
+    {
+        Destroy(enemigo1);
+
+        Destroy(enemigo2);
+
+        movz = -1;
+
+        PasilloMovimiento();
+        //HACER MÁQUINA DE ESTADOS
+    }
+
+    private void Batalla()
+    {
+        batalla = true;
+
+        movz = 0;
     }
     
 }
