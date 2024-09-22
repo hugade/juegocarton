@@ -11,7 +11,7 @@ public class TocarPantalla : MonoBehaviour
 
     private Vector2 startPosition;
 
-    public float speed;
+    private float speed;
 
     public GameObject pasillo;
 
@@ -21,23 +21,43 @@ public class TocarPantalla : MonoBehaviour
 
     private float limit1, limit2;
 
-    private bool batalla;
+    public enum States {Move, Battle};
+
+    public States mystate = States.Move;
+
+    public bool eliminar;
+
+    public bool hayenemigo1;
+
     private void Start()
     {
-        limit1 = 0;
+        limit1 = transform.position.z - 10;
 
-        limit2 = -10;
+        limit2 = transform.position.z - 20;
 
         movz = -1;
 
         speed = 2;
 
-        batalla = false;
+        eliminar = false;
+
+        hayenemigo1 = false;
     }
 
     private void Update()
     {
-        PasilloMovimiento();
+        switch (mystate)
+        {
+            case States.Move:
+                MoveFunction();
+                break;
+            case States.Battle:
+                BattleFunction();
+                break;
+            default:
+                Debug.Log("NO HAY ESTADO");
+                break;
+        }
 
         if (Input.touchCount > 0)
         {
@@ -53,10 +73,6 @@ public class TocarPantalla : MonoBehaviour
                     case TouchPhase.Moved:
                     direction = touch.position - startPosition;
                     Debug.Log("movement");
-                    if (batalla == true)
-                    {
-                        DestroyEnemigo();
-                    }
                     break;
 
                     case TouchPhase.Stationary:
@@ -73,34 +89,53 @@ public class TocarPantalla : MonoBehaviour
             
     }
 
-    private void PasilloMovimiento()
+    private void SetState(States S)
     {
-        transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
-
-        if (transform.position.z <= limit1)
+        mystate = S;
+    }
+    
+    private void MoveFunction()
+    {
+        if (eliminar == false && hayenemigo1 == false) 
         {
-            Batalla();
+            Instantiate(enemigo1, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+
+            enemigo1.transform.SetParent(transform);
+
+            hayenemigo1 = true;
         }
 
-       
+        transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
+
+        if (transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
+
+        if (transform.position.z <= limit2)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void DestroyEnemigo()
     {
-        Destroy(enemigo1);
+        if (hayenemigo1 == true)
+        {
+            Destroy(enemigo1);
+
+            hayenemigo1 = false;
+        }
 
         Destroy(enemigo2);
 
         movz = -1;
 
-        PasilloMovimiento();
-        //HACER MÁQUINA DE ESTADOS
+        eliminar = true;
+
+        SetState(States.Move);
+        //HACiendo MÁQUINA DE ESTADOS
     }
 
-    private void Batalla()
+    private void BattleFunction()
     {
-        batalla = true;
-
         movz = 0;
     }
     
