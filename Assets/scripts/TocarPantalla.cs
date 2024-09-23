@@ -11,13 +11,9 @@ public class TocarPantalla : MonoBehaviour
 
     private Vector2 startPosition;
 
-    private float speed;
-
     public GameObject pasillo;
 
     public GameObject enemigo1, enemigo2;
-
-    private int movz;
 
     private float limit1, limit2;
 
@@ -29,19 +25,21 @@ public class TocarPantalla : MonoBehaviour
 
     public bool hayenemigo1;
 
+    public bool hayenemigo2;
+
     private void Start()
     {
-        limit1 = transform.position.z - 10;
+        limit1 = pasillo.transform.position.z - 8;
 
-        limit2 = transform.position.z - 20;
-
-        movz = -1;
-
-        speed = 2;
+        limit2 = pasillo.transform.position.z - 16;
 
         eliminar = false;
 
         hayenemigo1 = false;
+
+        hayenemigo2 = false;
+
+        mystate = States.Move;
     }
 
     private void Update()
@@ -96,23 +94,7 @@ public class TocarPantalla : MonoBehaviour
     
     private void MoveFunction()
     {
-        if (eliminar == false && hayenemigo1 == false) 
-        {
-            Instantiate(enemigo1, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
-
-            enemigo1.transform.SetParent(transform);
-
-            hayenemigo1 = true;
-        }
-
-        transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
-
-        if (transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
-
-        if (transform.position.z <= limit2)
-        {
-            Destroy(this.gameObject);
-        }
+        if (pasillo.transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
     }
 
     private void DestroyEnemigo()
@@ -123,20 +105,21 @@ public class TocarPantalla : MonoBehaviour
 
             hayenemigo1 = false;
         }
+        if (hayenemigo2 == true)
+        {
+            Destroy(enemigo2);
 
-        Destroy(enemigo2);
-
-        movz = -1;
+            hayenemigo2 = false;
+        }
 
         eliminar = true;
 
         SetState(States.Move);
-        //HACiendo MÁQUINA DE ESTADOS
     }
 
     private void BattleFunction()
     {
-        movz = 0;
+        
     }
     
 }
