@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6589629710628598886}
+  - component: {fileID: -2262087769973906150}
   m_Layer: 0
   m_Name: PasilloPuerta
   m_TagString: Untagged
@@ -37,6 +38,27 @@ Transform:
   - {fileID: 2008017624485142572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2262087769973906150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649929546882111367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ef51f217d2b434099335213e0e5d9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mystate: 0
+  eliminar: 0
+  hayenemigo1: 0
+  hayenemigo2: 0
+  enemigo1: {fileID: 1265172033484357081, guid: 2dfc78cde50b49f418c3a209987c9228,
+    type: 3}
+  enemigo2: {fileID: 1265172033484357081, guid: c8250d409406d29428acc0f51afd8f0e,
+    type: 3}
+  pasillo: {fileID: 6999815958546817131, guid: 32b2103c9d07b21438387bc7715ca267, type: 3}
 --- !u!1001 &838350435167372965
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -22,6 +22,8 @@ public class Pasillo : MonoBehaviour
 
     public GameObject enemigo1, enemigo2;
 
+    public GameObject pasillo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class Pasillo : MonoBehaviour
 
         movz = -1;
 
-        speed = 3;
+        speed = 2;
 
         eliminar = false;
 
@@ -66,7 +68,7 @@ public class Pasillo : MonoBehaviour
     {
         if (eliminar == false && hayenemigo1 == false && transform.position.z > limit1)
         {
-            Instantiate(enemigo1, transform.position + new Vector3(2, 0.5f, 4), transform.rotation);
+            Instantiate(enemigo1, transform.position + new Vector3(2, 0.5f, 2), transform.rotation);
 
             hayenemigo1 = true;
         }
@@ -103,6 +105,8 @@ public class Pasillo : MonoBehaviour
         eliminar = true;
 
         SetState(States.Move);
+
+        Instantiate(pasillo, transform.position + new Vector3(0, 0, 8), transform.rotation);
     }
 
     private void BattleFunction()
