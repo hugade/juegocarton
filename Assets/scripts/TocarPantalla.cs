@@ -11,52 +11,17 @@ public class TocarPantalla : MonoBehaviour
 
     private Vector2 startPosition;
 
-    public GameObject pasillo;
+    public GameObject pasillovent, pasillopta;
 
-    public GameObject enemigo1, enemigo2;
-
-    private float limit1, limit2;
-
-    public enum States {Move, Battle};
-
-    public States mystate = States.Move;
-
-    public bool eliminar;
-
-    public bool hayenemigo1;
-
-    public bool hayenemigo2;
+    private float draglimit = 100f;
 
     private void Start()
     {
-        limit1 = pasillo.transform.position.z - 8;
 
-        limit2 = pasillo.transform.position.z - 16;
-
-        eliminar = false;
-
-        hayenemigo1 = false;
-
-        hayenemigo2 = false;
-
-        mystate = States.Move;
     }
 
     private void Update()
     {
-        switch (mystate)
-        {
-            case States.Move:
-                MoveFunction();
-                break;
-            case States.Battle:
-                BattleFunction();
-                break;
-            default:
-                Debug.Log("NO HAY ESTADO");
-                break;
-        }
-
         if (Input.touchCount > 0)
         {
                 Touch touch = Input.GetTouch(0);
@@ -65,12 +30,29 @@ public class TocarPantalla : MonoBehaviour
                 {
                     case TouchPhase.Began:
                     startPosition = touch.position;
-                    Debug.Log("began");
                     break;
 
                     case TouchPhase.Moved:
                     direction = touch.position - startPosition;
-                    Debug.Log("movement");
+                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    {
+                        pasillovent.GetComponent<Pasillo>();
+
+                        Debug.Log("ARRIBA");
+
+                    }
+                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    {
+                        Debug.Log("ABAJO");
+                    }
+                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    {
+                        Debug.Log("DERECHA");
+                    }
+                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    {
+                        Debug.Log("IZQUIERDA");
+                    }
                     break;
 
                     case TouchPhase.Stationary:
@@ -78,48 +60,8 @@ public class TocarPantalla : MonoBehaviour
 
                     case TouchPhase.Ended:
                     directionChanged = true;
-                    Debug.Log("ended");
                     break;
                 }
-        }
-
-       
-            
+        }   
     }
-
-    private void SetState(States S)
-    {
-        mystate = S;
-    }
-    
-    private void MoveFunction()
-    {
-        if (pasillo.transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
-    }
-
-    private void DestroyEnemigo()
-    {
-        if (hayenemigo1 == true)
-        {
-            Destroy(enemigo1);
-
-            hayenemigo1 = false;
-        }
-        if (hayenemigo2 == true)
-        {
-            Destroy(enemigo2);
-
-            hayenemigo2 = false;
-        }
-
-        eliminar = true;
-
-        SetState(States.Move);
-    }
-
-    private void BattleFunction()
-    {
-        
-    }
-    
 }

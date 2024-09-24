@@ -259,6 +259,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &375541329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1492488476}
+    m_Modifications:
+    - target: {fileID: -6277303995372846345, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: pasillo
+      value: 
+      objectReference: {fileID: 6649929546882111367, guid: 813c0b22a3b0c71488d4b84f8db67c68,
+        type: 3}
+    - target: {fileID: -6277303995372846345, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: enemigo1
+      value: 
+      objectReference: {fileID: 1265172033484357081, guid: 2dfc78cde50b49f418c3a209987c9228,
+        type: 3}
+    - target: {fileID: -6277303995372846345, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: enemigo2
+      value: 
+      objectReference: {fileID: 1265172033484357081, guid: c8250d409406d29428acc0f51afd8f0e,
+        type: 3}
+    - target: {fileID: -6277303995372846345, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: hayenemigo1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6999815958546817131, guid: 32b2103c9d07b21438387bc7715ca267,
+        type: 3}
+      propertyPath: m_Name
+      value: PasilloVentana
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32b2103c9d07b21438387bc7715ca267, type: 3}
+--- !u!4 &472457795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
+    type: 3}
+  m_PrefabInstance: {fileID: 375541329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &831283157
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,78 +591,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1180602407
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1492488476}
-    m_Modifications:
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6999815958546817131, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      propertyPath: m_Name
-      value: PasilloVentana
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6999815958546817131, guid: 32b2103c9d07b21438387bc7715ca267,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1729475908}
-  m_SourcePrefab: {fileID: 100100000, guid: 32b2103c9d07b21438387bc7715ca267, type: 3}
 --- !u!1 &1492488474
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +600,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1492488476}
+  - component: {fileID: 1492488477}
   m_Layer: 0
   m_Name: BUCLE
   m_TagString: Untagged
@@ -595,9 +621,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1729475907}
+  - {fileID: 472457795}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1492488477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492488474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337e79d0e983ee947b880f6163e35132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pasillovent: {fileID: 0}
+  pasillopta: {fileID: 0}
 --- !u!1 &1538392995
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,39 +772,6 @@ RectTransform:
   m_AnchoredPosition: {x: 305, y: 608}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1729475906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6999815958546817131, guid: 32b2103c9d07b21438387bc7715ca267,
-    type: 3}
-  m_PrefabInstance: {fileID: 1180602407}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1729475907 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2842949451998428280, guid: 32b2103c9d07b21438387bc7715ca267,
-    type: 3}
-  m_PrefabInstance: {fileID: 1180602407}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1729475908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729475906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9ef51f217d2b434099335213e0e5d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mystate: 0
-  eliminar: 0
-  hayenemigo1: 0
-  hayenemigo2: 0
-  enemigo1: {fileID: 1265172033484357081, guid: 2dfc78cde50b49f418c3a209987c9228,
-    type: 3}
-  enemigo2: {fileID: 1265172033484357081, guid: c8250d409406d29428acc0f51afd8f0e,
-    type: 3}
-  pasillo: {fileID: 6649929546882111367, guid: 813c0b22a3b0c71488d4b84f8db67c68, type: 3}
 --- !u!1 &2011462866
 GameObject:
   m_ObjectHideFlags: 0

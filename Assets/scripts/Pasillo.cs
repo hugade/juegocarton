@@ -24,6 +24,8 @@ public class Pasillo : MonoBehaviour
 
     public GameObject pasillo;
 
+    public bool batalla;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,8 @@ public class Pasillo : MonoBehaviour
         hayenemigo1 = false;
 
         hayenemigo2 = false;
+
+        batalla = false;
     }
 
     // Update is called once per frame
@@ -112,5 +116,7 @@ public class Pasillo : MonoBehaviour
     private void BattleFunction()
     {
         movz = 0;
+
+        batalla = true;
     }
 }

@@ -591,7 +591,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2842949451998428280}
-  - component: {fileID: -4026216658421441112}
+  - component: {fileID: -6277303995372846345}
   m_Layer: 0
   m_Name: PasilloVentana
   m_TagString: Untagged
@@ -628,7 +628,7 @@ Transform:
   - {fileID: 4550215048267165026}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4026216658421441112
+--- !u!114 &-6277303995372846345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -644,11 +644,9 @@ MonoBehaviour:
   eliminar: 0
   hayenemigo1: 0
   hayenemigo2: 0
-  enemigo1: {fileID: 1265172033484357081, guid: 2dfc78cde50b49f418c3a209987c9228,
-    type: 3}
-  enemigo2: {fileID: 1265172033484357081, guid: c8250d409406d29428acc0f51afd8f0e,
-    type: 3}
-  pasillo: {fileID: 6649929546882111367, guid: 813c0b22a3b0c71488d4b84f8db67c68, type: 3}
+  enemigo1: {fileID: 0}
+  enemigo2: {fileID: 0}
+  pasillo: {fileID: 0}
 --- !u!1 &7054657359592718493
 GameObject:
   m_ObjectHideFlags: 0

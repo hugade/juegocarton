@@ -13,7 +13,7 @@ public class EnemigoScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 4;
+        speed = 2;
 
         limit = 2;
 
