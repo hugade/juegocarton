@@ -22,9 +22,28 @@ public class Pasillo : MonoBehaviour
 
     public GameObject enemigo1, enemigo2;
 
-    public GameObject pasillo;
+    public GameObject otropasillo;
 
     public bool batalla;
+
+    public GameObject txtarriba;
+
+    public GameObject txtabajo;
+
+    public GameObject txtizquierda;
+
+    public GameObject txtderecha;
+
+    private bool dragarriba;
+
+    //TACTIL
+    private Vector2 direction;
+
+    private bool directionChanged;
+
+    private Vector2 startPosition;
+
+    private float draglimit = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +63,8 @@ public class Pasillo : MonoBehaviour
         hayenemigo2 = false;
 
         batalla = false;
+
+        dragarriba = false;
     }
 
     // Update is called once per frame
@@ -60,6 +81,51 @@ public class Pasillo : MonoBehaviour
             default:
                 Debug.Log("NO HAY ESTADO");
                 break;
+        }
+
+
+        //TACTIL
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    startPosition = touch.position;
+                    break;
+
+                case TouchPhase.Moved:
+                    direction = touch.position - startPosition;
+                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    {
+                        DestroyEnemigo();
+
+                        dragarriba = false;
+
+                        Debug.Log("ARRIBA");
+                    }
+                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    {
+                        Debug.Log("ABAJO");
+                    }
+                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    {
+                        Debug.Log("DERECHA");
+                    }
+                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    {
+                        Debug.Log("IZQUIERDA");
+                    }
+                    break;
+
+                case TouchPhase.Stationary:
+                    break;
+
+                case TouchPhase.Ended:
+                    directionChanged = true;
+                    break;
+            }
         }
     }
 
@@ -80,6 +146,11 @@ public class Pasillo : MonoBehaviour
         enemigo1.transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
 
         transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
+
+        if (transform.position.z <= limit1 + 4)
+        {
+            txtarriba.SetActive(true);
+        }
 
         if (transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
 
@@ -110,7 +181,7 @@ public class Pasillo : MonoBehaviour
 
         SetState(States.Move);
 
-        Instantiate(pasillo, transform.position + new Vector3(0, 0, 8), transform.rotation);
+        Instantiate(otropasillo, transform.position + new Vector3(0, 0, 8), transform.rotation);
     }
 
     private void BattleFunction()

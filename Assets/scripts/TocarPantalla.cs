@@ -37,7 +37,7 @@ public class TocarPantalla : MonoBehaviour
                     if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
                     {
                         pasillovent.GetComponent<Pasillo>();
-
+                       
                         Debug.Log("ARRIBA");
 
                     }
