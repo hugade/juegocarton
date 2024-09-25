@@ -642,11 +642,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mystate: 0
   eliminar: 0
-  hayenemigo1: 0
+  hayenemigo: 0
   hayenemigo2: 0
-  enemigo1: {fileID: 0}
-  enemigo2: {fileID: 0}
-  pasillo: {fileID: 0}
+  enemigo: {fileID: 1265172033484357081, guid: 2dfc78cde50b49f418c3a209987c9228, type: 3}
+  otropasillo: {fileID: 6649929546882111367, guid: 813c0b22a3b0c71488d4b84f8db67c68,
+    type: 3}
+  batalla: 0
+  txtarriba: {fileID: 7516767430804522885, guid: ebdaa1b1adf06d144ba93fac60f9c8dd,
+    type: 3}
+  txtabajo: {fileID: 8589188130186425283, guid: e85518eeb2767ca4c883afbd04f360eb,
+    type: 3}
+  txtizquierda: {fileID: 4726933433466105253, guid: 588c54b7529301746941606d01f06c5f,
+    type: 3}
+  txtderecha: {fileID: 7069753811145365865, guid: 32bb71b1450867e49816c3db06a681e0,
+    type: 3}
 --- !u!1 &7054657359592718493
 GameObject:
   m_ObjectHideFlags: 0

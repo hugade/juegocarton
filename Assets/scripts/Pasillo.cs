@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Pasillo : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Pasillo : MonoBehaviour
 
     private int movz;
 
-    public enum States { Move, Battle };
+    public enum States { Move, Battle, };
 
     public States mystate = States.Move;
 
@@ -16,25 +17,19 @@ public class Pasillo : MonoBehaviour
 
     public bool eliminar;
 
-    public bool hayenemigo1;
+    public bool hayenemigo;
 
     public bool hayenemigo2;
 
-    public GameObject enemigo1, enemigo2;
+    public GameObject enemigo;
 
     public GameObject otropasillo;
 
     public bool batalla;
 
-    public GameObject txtarriba;
+    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha;
 
-    public GameObject txtabajo;
-
-    public GameObject txtizquierda;
-
-    public GameObject txtderecha;
-
-    private bool dragarriba;
+    private bool arriba, abajo, izquierda, derecha, rng;
 
     //TACTIL
     private Vector2 direction;
@@ -58,13 +53,21 @@ public class Pasillo : MonoBehaviour
 
         eliminar = false;
 
-        hayenemigo1 = false;
+        hayenemigo = false;
 
         hayenemigo2 = false;
 
         batalla = false;
 
-        dragarriba = false;
+        arriba = false;
+
+        abajo = false;
+
+        izquierda = false;
+
+        derecha = false;
+
+        rng = true;
     }
 
     // Update is called once per frame
@@ -78,6 +81,7 @@ public class Pasillo : MonoBehaviour
             case States.Battle:
                 BattleFunction();
                 break;
+            
             default:
                 Debug.Log("NO HAY ESTADO");
                 break;
@@ -97,24 +101,62 @@ public class Pasillo : MonoBehaviour
 
                 case TouchPhase.Moved:
                     direction = touch.position - startPosition;
-                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && arriba == true)
                     {
+                        //SetState(States.Destroy);
+
                         DestroyEnemigo();
 
-                        dragarriba = false;
+                        arriba = false;
+
+                        txtarriba.SetActive(false);
+
+                        rng = true;
+
+                        Instantiate(otropasillo, new Vector3(0, 0, transform.position.z + 8), transform.rotation);
 
                         Debug.Log("ARRIBA");
                     }
-                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x))
+                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == true)
                     {
+                        //SetState(States.Destroy);
+
+                        DestroyEnemigo();
+
+                        abajo = false;
+
+                        txtabajo.SetActive(false);
+
+                        rng = true;
+
                         Debug.Log("ABAJO");
                     }
-                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == true)
                     {
+                        //SetState(States.Destroy);
+
+                        DestroyEnemigo();
+
+                        derecha = false;
+
+                        txtderecha.SetActive(false);
+
+                        rng = true;
+
                         Debug.Log("DERECHA");
                     }
-                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
+                        //SetState(States.Destroy);
+
+                        DestroyEnemigo();
+
+                        izquierda = false;
+
+                        txtizquierda.SetActive(false);
+
+                        rng = true;
+
                         Debug.Log("IZQUIERDA");
                     }
                     break;
@@ -136,23 +178,57 @@ public class Pasillo : MonoBehaviour
 
     private void MoveFunction()
     {
-        if (eliminar == false && hayenemigo1 == false && transform.position.z > limit1)
+        if (eliminar == false && hayenemigo == false && transform.position.z > limit1)
         {
-            Instantiate(enemigo1, transform.position + new Vector3(2, 0.5f, 2), transform.rotation);
+            Instantiate(enemigo, new Vector3(2, 0.5f, transform.position.z + 2), transform.rotation);
 
-            hayenemigo1 = true;
+            hayenemigo = true;
         }
-
-        enemigo1.transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
 
         transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
 
-        if (transform.position.z <= limit1 + 4)
+        if (transform.position.z <= limit1 + 4 && rng == true)
         {
-            txtarriba.SetActive(true);
+            int randomNumber = Random.Range(0, 3);
+
+            if (randomNumber == 0)
+            {
+                txtarriba.SetActive(true);
+
+                arriba = true;
+
+                rng = false;
+            }
+
+            if (randomNumber == 1)
+            {
+                txtabajo.SetActive(true);
+
+                abajo = true;
+
+                rng = false;
+            }
+
+            if (randomNumber == 2)
+            {
+                txtizquierda.SetActive(true);
+
+                izquierda = true;
+
+                rng = false;
+            }
+
+            if (randomNumber == 3)
+            {
+                txtderecha.SetActive(true);
+
+                derecha = true;
+
+                rng = false;
+            }
         }
 
-        if (transform.position.z <= limit1 && eliminar == false) SetState(States.Battle);
+        if (transform.position.z <= limit1 && eliminar == false && hayenemigo == true) SetState(States.Battle);
 
         if (transform.position.z <= limit2)
         {
@@ -162,26 +238,15 @@ public class Pasillo : MonoBehaviour
 
     private void DestroyEnemigo()
     {
-        if (hayenemigo1 == true)
-        {
-            Destroy(enemigo1);
+        //transform.Translate(new Vector3(0, 0, movz) * Time.deltaTime * speed, Space.World);
 
-            hayenemigo1 = false;
-        }
-        if (hayenemigo2 == true)
-        {
-            Destroy(enemigo2);
-
-            hayenemigo2 = false;
-        }
-
-        movz = -1;
+        Destroy(enemigo);
 
         eliminar = true;
 
-        SetState(States.Move);
+        hayenemigo = false;
 
-        Instantiate(otropasillo, transform.position + new Vector3(0, 0, 8), transform.rotation);
+        Instantiate(otropasillo, new Vector3(transform.position.x, 0, transform.position.z + 8), transform.rotation);
     }
 
     private void BattleFunction()
@@ -189,5 +254,7 @@ public class Pasillo : MonoBehaviour
         movz = 0;
 
         batalla = true;
+
+        if (hayenemigo == false) SetState(States.Move);
     }
 }
