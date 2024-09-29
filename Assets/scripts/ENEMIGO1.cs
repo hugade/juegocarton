@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ENEMIGO1 : MonoBehaviour
 {
-    private int speed;
+    private float speed;
 
     private float limit1, limit2;
 
@@ -53,71 +53,74 @@ public class ENEMIGO1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
-
-        if (transform.position.z > limit1)
+        if (transform.position.x == 2)
         {
-            movz = -1;
-        }
+            transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
 
-        if (transform.position.z <= limit2 && rng == true)
-        {
-            int randomNumber = Random.Range(0, 3);
-
-            if (randomNumber == 0)
+            if (transform.position.z > limit1)
             {
-                //Instantiate(txtarriba, new Vector3( 47, 463, 0), transform.rotation);
-
-                txtarriba.SetActive(true);
-
-                arriba = true;
-
-                rng = false;
-
-                
+                movz = -1;
             }
 
-            if (randomNumber == 1)
+            if (transform.position.z <= limit2 && rng == true)
             {
-                //Instantiate(txtabajo, new Vector3(39, 463, 0), transform.rotation);
+                int randomNumber = Random.Range(0, 4);
 
-                txtabajo.SetActive(true);
+                if (randomNumber == 0)
+                {
+                    //Instantiate(txtarriba, new Vector3( 47, 463, 0), transform.rotation);
 
-                abajo = true;
+                    txtarriba.SetActive(true);
 
-                rng = false;
+                    arriba = true;
 
+                    rng = false;
+
+
+                }
+
+                if (randomNumber == 1)
+                {
+                    //Instantiate(txtabajo, new Vector3(39, 463, 0), transform.rotation);
+
+                    txtabajo.SetActive(true);
+
+                    abajo = true;
+
+                    rng = false;
+
+                }
+
+                if (randomNumber == 2)
+                {
+                    //Instantiate(txtizquierda, new Vector3(0, 463, 0), transform.rotation);
+
+                    txtizquierda.SetActive(true);
+
+                    izquierda = true;
+
+                    rng = false;
+
+
+                }
+
+                if (randomNumber == 3)
+                {
+                    //Instantiate(txtderecha, new Vector3(0, 463, 0), transform.rotation);
+
+                    txtderecha.SetActive(true);
+
+                    derecha = true;
+
+                    rng = false;
+
+                }
             }
 
-            if (randomNumber == 2)
+            if (transform.position.z <= limit1 && eliminar == false)
             {
-                //Instantiate(txtizquierda, new Vector3(0, 463, 0), transform.rotation);
-
-                txtizquierda.SetActive(true);
-
-                izquierda = true;
-
-                rng = false;
-
-           
+                movz = 0;
             }
-
-            if (randomNumber == 3)
-            {
-                //Instantiate(txtderecha, new Vector3(0, 463, 0), transform.rotation);
-
-                txtderecha.SetActive(true);
-
-                derecha = true;
-
-                rng = false;
-
-            }
-        }
-
-        if (transform.position.z <= limit1 && eliminar == false)
-        {
-            movz = 0;
         }
 
         //TACTIL
@@ -161,7 +164,7 @@ public class ENEMIGO1 : MonoBehaviour
 
                         //Destroy(txtizquierda);
 
-                        txtizquierda.SetActive(false);
+                        txtderecha.SetActive(false);
                     }
                     if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
@@ -171,7 +174,7 @@ public class ENEMIGO1 : MonoBehaviour
 
                         //Destroy(txtderecha);
 
-                        txtderecha.SetActive(false);
+                        txtizquierda.SetActive(false);
                     }
                     break;
 
@@ -187,21 +190,25 @@ public class ENEMIGO1 : MonoBehaviour
 
     private void DestroyEnemigo()
     {
-        Destroy(this.gameObject);
+        int nuevoenemigo = Random.Range(0, 2);
 
-        int enemigo = Random.Range(0, 1);
-
-        if (enemigo == 0)
+        if (nuevoenemigo == 0)
         {
-            Instantiate(enemigo1, new Vector3(2, 0, 8), transform.rotation);
+            enemigo2.transform.position = new Vector3(2, 0, 12);
+
+            enemigo1.transform.position = new Vector3(-2, 0, 12);
         }
 
-        if (enemigo == 1)
+        if (nuevoenemigo == 1)
         {
-            Instantiate(enemigo2, new Vector3(2, 0, 8), transform.rotation);
+            enemigo1.transform.position = new Vector3(2, 0, 12);
+
+            enemigo2.transform.position = new Vector3(-2, 0, 12);
         }
 
-        rng = true; 
+        rng = true;
         movz = -1;
+        speed = speed + 0.2f;
+        limit2 = limit2 + 0.1f;
     }
 }
