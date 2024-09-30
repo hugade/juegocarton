@@ -1,21 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 
 public class ENEMIGO1 : MonoBehaviour
 {
-    private float speed;
+    public float speed;
 
     private float limit1, limit2;
 
-    public int movz;
+    private int movz, vida, score;
 
     private bool eliminar, rng;
 
-    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2;
+    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2, vida1, vida2, vida3;
 
-    private bool arriba, abajo, izquierda, derecha;
+    private bool arriba, abajo, izquierda, derecha, quitarvida;
+
+    public TMP_Text scoretxt;
 
     //TACTIL
     private Vector2 direction;
@@ -48,21 +51,28 @@ public class ENEMIGO1 : MonoBehaviour
         izquierda = false;
 
         derecha = false;
+
+        quitarvida = true;
+
+        vida = 3;
+
+        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x == 2)
+        ///ENEMIGO 1
+        if (enemigo1.transform.position.x == 2)
         {
-            transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
+            enemigo1.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
 
-            if (transform.position.z > limit1)
+            if (enemigo1.transform.position.z > limit1)
             {
                 movz = -1;
             }
 
-            if (transform.position.z <= limit2 && rng == true)
+            if (enemigo1.transform.position.z <= limit2 && rng == true)
             {
                 int randomNumber = Random.Range(0, 4);
 
@@ -117,7 +127,78 @@ public class ENEMIGO1 : MonoBehaviour
                 }
             }
 
-            if (transform.position.z <= limit1 && eliminar == false)
+            if (enemigo1.transform.position.z <= limit1 && eliminar == false)
+            {
+                movz = 0;
+            }
+        }
+
+        ///ENEMIGO 2
+        if (enemigo2.transform.position.x == 2)
+        {
+            enemigo2.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
+
+            if (enemigo2.transform.position.z > limit1)
+            {
+                movz = -1;
+            }
+
+            if (enemigo2.transform.position.z <= limit2 && rng == true)
+            {
+                int randomNumber = Random.Range(0, 4);
+
+                if (randomNumber == 0)
+                {
+                    //Instantiate(txtarriba, new Vector3( 47, 463, 0), transform.rotation);
+
+                    txtarriba.SetActive(true);
+
+                    arriba = true;
+
+                    rng = false;
+
+
+                }
+
+                if (randomNumber == 1)
+                {
+                    //Instantiate(txtabajo, new Vector3(39, 463, 0), transform.rotation);
+
+                    txtabajo.SetActive(true);
+
+                    abajo = true;
+
+                    rng = false;
+
+                }
+
+                if (randomNumber == 2)
+                {
+                    //Instantiate(txtizquierda, new Vector3(0, 463, 0), transform.rotation);
+
+                    txtizquierda.SetActive(true);
+
+                    izquierda = true;
+
+                    rng = false;
+
+
+                }
+
+                if (randomNumber == 3)
+                {
+                    //Instantiate(txtderecha, new Vector3(0, 463, 0), transform.rotation);
+
+                    txtderecha.SetActive(true);
+
+                    derecha = true;
+
+                    rng = false;
+
+                }
+            }
+
+            if (enemigo2.transform.position.z <= limit1 && eliminar == false)
             {
                 movz = 0;
             }
@@ -146,6 +227,10 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtarriba.SetActive(false);
                     }
+                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && arriba == false)
+                    {
+                        GestionVida();
+                    }
                     if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == true)
                     {
                         DestroyEnemigo();
@@ -155,6 +240,10 @@ public class ENEMIGO1 : MonoBehaviour
                         //Destroy(txtabajo);
 
                         txtabajo.SetActive(false);
+                    }
+                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == false)
+                    {
+                        GestionVida();
                     }
                     if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == true)
                     {
@@ -166,6 +255,10 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtderecha.SetActive(false);
                     }
+                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == false)
+                    {
+                        GestionVida();
+                    }
                     if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
                         DestroyEnemigo();
@@ -176,6 +269,10 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtizquierda.SetActive(false);
                     }
+                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == false)
+                    {
+                        GestionVida();
+                    }
                     break;
 
                 case TouchPhase.Stationary:
@@ -183,13 +280,23 @@ public class ENEMIGO1 : MonoBehaviour
 
                 case TouchPhase.Ended:
                     directionChanged = true;
+                    quitarvida = true;
                     break;
             }
         }
+
+        VIDAUI();
     }
 
     private void DestroyEnemigo()
     {
+        score = score + 10;
+        scoretxt.text = score.ToString();
+        rng = true;
+        movz = -1;
+        limit2 = limit2 + 0.1f;
+        if (speed < 20) speed = speed + 0.2f;
+
         int nuevoenemigo = Random.Range(0, 2);
 
         if (nuevoenemigo == 0)
@@ -205,10 +312,35 @@ public class ENEMIGO1 : MonoBehaviour
 
             enemigo2.transform.position = new Vector3(-2, 0, 12);
         }
+    }
 
-        rng = true;
-        movz = -1;
-        speed = speed + 0.2f;
-        limit2 = limit2 + 0.1f;
+    private void GestionVida()
+    {
+        if (quitarvida == true)
+        {
+            vida = vida - 1;
+        }
+
+        quitarvida = false;
+    }
+
+    private void VIDAUI()
+    {
+        if (vida == 2)
+        {
+            vida3.SetActive(false);
+            vida2.SetActive(true);
+        }
+
+        if (vida == 1)
+        {
+            vida2.SetActive(false);
+            vida1.SetActive(true);
+        }
+
+        if (vida == 0)
+        {
+            vida1.SetActive(false);
+        }
     }
 }
