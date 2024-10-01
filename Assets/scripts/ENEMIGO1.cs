@@ -130,6 +130,8 @@ public class ENEMIGO1 : MonoBehaviour
             if (enemigo1.transform.position.z <= limit1 && eliminar == false)
             {
                 movz = 0;
+
+                GestionVida();
             }
         }
 
@@ -201,6 +203,8 @@ public class ENEMIGO1 : MonoBehaviour
             if (enemigo2.transform.position.z <= limit1 && eliminar == false)
             {
                 movz = 0;
+
+                GestionVida();
             }
         }
 
@@ -227,10 +231,7 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtarriba.SetActive(false);
                     }
-                    if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && arriba == false)
-                    {
-                        GestionVida();
-                    }
+                    
                     if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == true)
                     {
                         DestroyEnemigo();
@@ -241,10 +242,7 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtabajo.SetActive(false);
                     }
-                    if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == false)
-                    {
-                        GestionVida();
-                    }
+                    
                     if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == true)
                     {
                         DestroyEnemigo();
@@ -255,10 +253,7 @@ public class ENEMIGO1 : MonoBehaviour
 
                         txtderecha.SetActive(false);
                     }
-                    if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == false)
-                    {
-                        GestionVida();
-                    }
+                   
                     if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
                         DestroyEnemigo();
@@ -268,10 +263,6 @@ public class ENEMIGO1 : MonoBehaviour
                         //Destroy(txtderecha);
 
                         txtizquierda.SetActive(false);
-                    }
-                    if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == false)
-                    {
-                        GestionVida();
                     }
                     break;
 
