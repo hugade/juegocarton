@@ -34,7 +34,7 @@ public class ENEMIGO1 : MonoBehaviour
     {
         speed = 2;
 
-        limit1 = 2;
+        limit1 = 0.5f;
 
         limit2 = 6;
 

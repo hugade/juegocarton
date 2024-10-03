@@ -39,4 +39,9 @@ public class UIMANAGERScripts : MonoBehaviour
     {
         Pause.SetActive(false);
     }
+
+    public void BackToPause()
+    {
+        MenuOptions.SetActive(false);
+    }
 }
