@@ -285,7 +285,7 @@ public class ENEMIGO1 : MonoBehaviour
         scoretxt.text = score.ToString();
         rng = true;
         movz = -1;
-        limit2 = limit2 + 0.1f;
+        limit2 = limit2 + 0.15f;
         if (speed < 20) speed = speed + 0.2f;
 
         int nuevoenemigo = Random.Range(0, 2);
@@ -320,13 +320,11 @@ public class ENEMIGO1 : MonoBehaviour
         if (vida == 2)
         {
             vida3.SetActive(false);
-            vida2.SetActive(true);
         }
 
         if (vida == 1)
         {
             vida2.SetActive(false);
-            vida1.SetActive(true);
         }
 
         if (vida == 0)

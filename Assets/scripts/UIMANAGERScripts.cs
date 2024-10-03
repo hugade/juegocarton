@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class UIMANAGERScripts : MonoBehaviour
 {
+    public GameObject MenuOptions;
+
+    public GameObject Pause;
     public void PlayGame()
     {
         SceneManager.LoadScene(2);
@@ -12,17 +15,28 @@ public class UIMANAGERScripts : MonoBehaviour
 
     public void OptionsMenu()
     {
-        SceneManager.LoadScene(1);
+        MenuOptions.SetActive(true);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        MenuOptions.SetActive(false);
+        Debug.Log("mainmenu");
     }
 
     public void QuitGame()
     {
         Debug.Log("QUIT GAME");
         Application.Quit();
+    }
+
+    public void PauseGame()
+    {
+        Pause.SetActive(true);
+    }
+
+    public void ReplayGame()
+    {
+        Pause.SetActive(false);
     }
 }
