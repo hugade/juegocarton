@@ -14,7 +14,9 @@ public class ENEMIGO1 : MonoBehaviour
 
     private bool eliminar, rng;
 
-    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2, vida1, vida2, vida3;
+    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2, vida1, vida2, vida3, tijeras;
+
+    private Animator tijeraanim, ene1anim, ene2anim;
 
     private bool arriba, abajo, izquierda, derecha, quitarvida;
 
@@ -32,6 +34,8 @@ public class ENEMIGO1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
+
         speed = 2;
 
         limit1 = 0.5f;
@@ -57,6 +61,12 @@ public class ENEMIGO1 : MonoBehaviour
         vida = 3;
 
         score = 0;
+
+        tijeraanim = tijeras.GetComponent<Animator>();
+
+        ene1anim = enemigo1.GetComponent<Animator>();
+
+        ene2anim = enemigo2.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -223,6 +233,8 @@ public class ENEMIGO1 : MonoBehaviour
                     direction = touch.position - startPosition;
                     if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && arriba == true)
                     {
+                        tijeraanim.Play("Down attack");
+
                         DestroyEnemigo();
 
                         arriba = false;
@@ -234,6 +246,8 @@ public class ENEMIGO1 : MonoBehaviour
                     
                     if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == true)
                     {
+                        tijeraanim.Play("Up attack");
+
                         DestroyEnemigo();
 
                         abajo = false;
@@ -245,6 +259,8 @@ public class ENEMIGO1 : MonoBehaviour
                     
                     if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == true)
                     {
+                        tijeraanim.Play("Left attack");
+
                         DestroyEnemigo();
 
                         derecha = false;
@@ -256,6 +272,8 @@ public class ENEMIGO1 : MonoBehaviour
                    
                     if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
+                        tijeraanim.Play("Right attack");
+
                         DestroyEnemigo();
 
                         izquierda = false;
@@ -309,6 +327,8 @@ public class ENEMIGO1 : MonoBehaviour
     {
         if (quitarvida == true)
         {
+            tijeraanim.Play("Hurt");
+
             vida = vida - 1;
         }
 

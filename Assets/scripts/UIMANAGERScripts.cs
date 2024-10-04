@@ -10,7 +10,7 @@ public class UIMANAGERScripts : MonoBehaviour
     public GameObject Pause;
     public void PlayGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void OptionsMenu()
@@ -43,5 +43,10 @@ public class UIMANAGERScripts : MonoBehaviour
     public void BackToPause()
     {
         MenuOptions.SetActive(false);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
