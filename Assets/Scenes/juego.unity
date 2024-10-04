@@ -4768,6 +4768,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bc6aa8563d0c243459a09371fae1defd, type: 2}
+    - target: {fileID: -4438228492446633153, guid: 92c87a8c22b73594b9357795e04dd60e,
+        type: 3}
+      propertyPath: m_Name
+      value: Enemy_2_Top
+      objectReference: {fileID: 0}
     - target: {fileID: -3318939001187000000, guid: 92c87a8c22b73594b9357795e04dd60e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4793,6 +4798,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bc6aa8563d0c243459a09371fae1defd, type: 2}
+    - target: {fileID: 8700725330082129686, guid: 92c87a8c22b73594b9357795e04dd60e,
+        type: 3}
+      propertyPath: m_Name
+      value: Rod_Top
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
