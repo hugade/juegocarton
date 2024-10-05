@@ -12,13 +12,15 @@ public class ENEMIGO1 : MonoBehaviour
 
     private int movz, vida, score;
 
-    private bool eliminar, rng;
+    private bool rng;
 
-    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2, vida1, vida2, vida3, tijeras;
+    public GameObject txtarriba, txtabajo, txtizquierda, txtderecha, enemigo1, enemigo2, vida1, vida2, vida3, tijeras, vacio1, vacio2;
 
     private Animator tijeraanim, ene1anim, ene2anim;
 
-    private bool arriba, abajo, izquierda, derecha, quitarvida;
+    private AudioSource ene1audio, ene2audio, tijerasaudio;
+
+    private bool arriba, abajo, izquierda, derecha, quitarvida, hayene1, hayene2;
 
     public TMP_Text scoretxt;
 
@@ -41,8 +43,6 @@ public class ENEMIGO1 : MonoBehaviour
         limit1 = 0.5f;
 
         limit2 = 6;
-
-        eliminar = false;
 
         movz = -1;
 
@@ -67,6 +67,16 @@ public class ENEMIGO1 : MonoBehaviour
         ene1anim = enemigo1.GetComponent<Animator>();
 
         ene2anim = enemigo2.GetComponent<Animator>();
+
+        hayene1 = false;
+
+        hayene2 = false;
+
+        ene1audio = enemigo1.GetComponent<AudioSource>();
+
+        ene2audio = enemigo2.GetComponent<AudioSource>();
+
+        tijerasaudio = tijeras.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -75,7 +85,10 @@ public class ENEMIGO1 : MonoBehaviour
         ///ENEMIGO 1
         if (enemigo1.transform.position.x == 2)
         {
-            enemigo1.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
+            hayene1 = true;
+
+            ene1anim.Play("Idle");
+            vacio1.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
 
             if (enemigo1.transform.position.z > limit1)
             {
@@ -137,9 +150,11 @@ public class ENEMIGO1 : MonoBehaviour
                 }
             }
 
-            if (enemigo1.transform.position.z <= limit1 && eliminar == false)
+            if (enemigo1.transform.position.z <= limit1)
             {
                 movz = 0;
+
+                ene1anim.Play("Attack");
 
                 GestionVida();
             }
@@ -148,7 +163,8 @@ public class ENEMIGO1 : MonoBehaviour
         ///ENEMIGO 2
         if (enemigo2.transform.position.x == 2)
         {
-            enemigo2.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
+            ene2anim.Play("Idle");
+            vacio2.transform.Translate(new Vector3(0, 0, movz) * speed * Time.deltaTime, Space.World);
 
             if (enemigo2.transform.position.z > limit1)
             {
@@ -210,9 +226,11 @@ public class ENEMIGO1 : MonoBehaviour
                 }
             }
 
-            if (enemigo2.transform.position.z <= limit1 && eliminar == false)
+            if (enemigo2.transform.position.z <= limit1)
             {
                 movz = 0;
+
+                ene2anim.Play("Attack");
 
                 GestionVida();
             }
@@ -233,6 +251,8 @@ public class ENEMIGO1 : MonoBehaviour
                     direction = touch.position - startPosition;
                     if (direction.y > 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && arriba == true)
                     {
+                        tijerasaudio.Play(1);
+
                         tijeraanim.Play("Down attack");
 
                         DestroyEnemigo();
@@ -246,6 +266,8 @@ public class ENEMIGO1 : MonoBehaviour
                     
                     if (direction.y < 0 && Mathf.Abs(direction.y) > draglimit && Mathf.Abs(direction.y) > Mathf.Abs(direction.x) && abajo == true)
                     {
+                        tijerasaudio.Play(1);
+
                         tijeraanim.Play("Up attack");
 
                         DestroyEnemigo();
@@ -259,6 +281,8 @@ public class ENEMIGO1 : MonoBehaviour
                     
                     if (direction.x > 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && derecha == true)
                     {
+                        tijerasaudio.Play(1);
+
                         tijeraanim.Play("Left attack");
 
                         DestroyEnemigo();
@@ -272,6 +296,8 @@ public class ENEMIGO1 : MonoBehaviour
                    
                     if (direction.x < 0 && Mathf.Abs(direction.x) > draglimit && Mathf.Abs(direction.x) > Mathf.Abs(direction.y) && izquierda == true)
                     {
+                        tijerasaudio.Play(1);
+
                         tijeraanim.Play("Right attack");
 
                         DestroyEnemigo();
@@ -299,6 +325,19 @@ public class ENEMIGO1 : MonoBehaviour
 
     private void DestroyEnemigo()
     {
+        if (hayene1 == true)
+        {
+            ene1audio.Play();
+            ene1anim.Play("Death");
+            hayene1 = false;
+        }
+
+        if (hayene2 == true)
+        {
+            ene2audio.Play();
+            ene2anim.Play("Death");
+            hayene2 = false;
+        }
         score = score + 10;
         scoretxt.text = score.ToString();
         rng = true;
@@ -310,16 +349,20 @@ public class ENEMIGO1 : MonoBehaviour
 
         if (nuevoenemigo == 0)
         {
-            enemigo2.transform.position = new Vector3(2, 0, 12);
+            vacio2.transform.position = new Vector3(2, 0, 12);
 
-            enemigo1.transform.position = new Vector3(-2, 0, 12);
+            vacio1.transform.position = new Vector3(-2, 0, 12);
+
+            hayene2 = true;
         }
 
         if (nuevoenemigo == 1)
         {
-            enemigo1.transform.position = new Vector3(2, 0, 12);
+            vacio1.transform.position = new Vector3(2, 0, 12);
 
-            enemigo2.transform.position = new Vector3(-2, 0, 12);
+            vacio2.transform.position = new Vector3(-2, 0, 12);
+
+            hayene1 = true;
         }
     }
 
@@ -327,6 +370,8 @@ public class ENEMIGO1 : MonoBehaviour
     {
         if (quitarvida == true)
         {
+            tijerasaudio.Play(2);
+
             tijeraanim.Play("Hurt");
 
             vida = vida - 1;

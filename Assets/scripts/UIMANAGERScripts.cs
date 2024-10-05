@@ -33,11 +33,13 @@ public class UIMANAGERScripts : MonoBehaviour
     public void PauseGame()
     {
         Pause.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ReplayGame()
     {
         Pause.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void BackToPause()
