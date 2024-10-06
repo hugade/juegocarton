@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class UIMANAGERScripts : MonoBehaviour
 {
+    void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     public GameObject MenuOptions;
 
     public GameObject Pause;
@@ -21,7 +26,6 @@ public class UIMANAGERScripts : MonoBehaviour
     public void MainMenu()
     {
         MenuOptions.SetActive(false);
-        Debug.Log("mainmenu");
     }
 
     public void QuitGame()
@@ -36,7 +40,7 @@ public class UIMANAGERScripts : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void ReplayGame()
+    public void BackToGame()
     {
         Pause.SetActive(false);
         Time.timeScale = 1f;
@@ -50,5 +54,6 @@ public class UIMANAGERScripts : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 }
