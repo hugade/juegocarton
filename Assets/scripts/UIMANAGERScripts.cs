@@ -2,12 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class UIMANAGERScripts : MonoBehaviour
 {
+    [SerializeField] private AudioMixer myMixer;
+    [SerializeField] private Slider musicSlider;
     void Start()
     {
         Application.targetFrameRate = 60;
+
+        if (PlayerPrefs.HasKey("musicVolume"))
+        {
+            LoadVolume();
+        }
+        else
+        {
+            SetVolume();
+        }
     }
 
     public GameObject MenuOptions;
@@ -55,5 +68,19 @@ public class UIMANAGERScripts : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 1f;
+    }
+
+    public void SetVolume()
+    {
+        float volume = musicSlider.value;
+        myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("musicVolume", volume);
+    }
+
+    private void LoadVolume()
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+
+        SetVolume();
     }
 }
